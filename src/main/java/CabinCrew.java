@@ -4,7 +4,6 @@ public class CabinCrew extends CrewMember{
         super(initialName, bags, crewRank);
     }
 
-
     public String relayMsg() {
         return "Please stay seated with your seatbelts fastened";
     }

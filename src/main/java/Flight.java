@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Objects;
 
 public class Flight {
@@ -19,19 +17,27 @@ public class Flight {
     private String destinationCode;
     private String departureTime;
     //private ArrayList<Pilot> crewMembers; //includes pilots and cabin crew
-    private ArrayList<Passenger> collectionOfPassengers;
-    //HashMap<String, int> baggageTotal = new HashMap<String, int>();
+    private ArrayList<Passenger> passengers;
+    private Pilot pilot;
+    private CabinCrew cabinCrew1;
+    private CabinCrew cabinCrew2;
+
+
     //private int totalWeightOfFlight;
     //Need several Hashmaps of (bags:int, passengers:int)
     // ie need to know how many of each - bags, passengers. Then multiply by some average weight.
     //Also need cargo weight.
 
-    public Flight(String flightNum, String departureCode, String destinationCode, String departureTime, ArrayList<Passenger> collectionOfPassengers){
+    public Flight(String flightNum, String departureCode, String destinationCode, String departureTime, ArrayList<Passenger> passengers, Pilot pilot, CabinCrew cabinCrew1, CabinCrew cabinCrew2){
         this.flightNum = flightNum;
         this.departureCode = departureCode;
         this.destinationCode = destinationCode;
         this.departureTime = departureTime;
-        this.collectionOfPassengers = collectionOfPassengers;
+        this.passengers = passengers;
+//        this.pilot = pilot;
+//        this.cabinCrew1 = cabinCrew1;
+//        this.cabinCrew2 = cabinCrew2;
+
     }
     public String getFlightNum() {
         return this.flightNum;
@@ -70,5 +76,10 @@ public class Flight {
             }
         }
         return false;
+    }
+
+    public int addPassenger(ArrayList<Passenger> passengers, Passenger passenger6) {
+        passengers.add(passenger6);
+        return passengerCount( passengers) ;
     }
 }

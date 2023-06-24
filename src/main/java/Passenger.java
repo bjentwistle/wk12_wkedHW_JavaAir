@@ -1,6 +1,6 @@
  public class Passenger {
         private final String  name;
-        private int bags;
+        private final int bags;
 
      public Passenger(String initialName, int bags) {
          this.name = initialName;

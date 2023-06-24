@@ -22,7 +22,10 @@ public class FlightTest {
         passengers.add(passenger3);
         passengers.add(passenger4);
         passengers.add(passenger5);
-        flight = new Flight("BA1234", "LGW","EDI","1400", passengers);
+        Pilot pilot = new Pilot("Jane Brodie",1, CrewRank.CAPTAIN, "CPL002341");
+        CabinCrew cabinCrew1 = new CabinCrew("Graham Smith", 1, CrewRank.FLIGHT_ATTENDANT);
+        CabinCrew cabinCrew2 = new CabinCrew("Sandra Ho", 1, CrewRank.LEAD_ATTENDANT);
+        flight = new Flight("BA1234", "LGW","EDI","1400", passengers, pilot, cabinCrew1, cabinCrew2);
 
     }
     @Test
@@ -54,5 +57,12 @@ public class FlightTest {
     @Test
     public void hasPassengerNameTed(){
         assertEquals(true, flight.getPassengerByName(passengers, "Lisa Boyd"));
+    }
+
+    @Test
+    public void canAddPassenger(){
+        Passenger passenger6 = new Passenger("Amy Pond", 2);
+        flight.addPassenger(passengers, passenger6);
+        assertEquals(6, flight.passengerCount(passengers));
     }
 }

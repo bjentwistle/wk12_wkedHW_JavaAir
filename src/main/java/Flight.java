@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Objects;
 
 public class Flight {
 
@@ -17,6 +20,7 @@ public class Flight {
     private String departureTime;
     //private ArrayList<Pilot> crewMembers; //includes pilots and cabin crew
     private ArrayList<Passenger> collectionOfPassengers;
+    //HashMap<String, int> baggageTotal = new HashMap<String, int>();
     //private int totalWeightOfFlight;
     //Need several Hashmaps of (bags:int, passengers:int)
     // ie need to know how many of each - bags, passengers. Then multiply by some average weight.
@@ -43,12 +47,28 @@ public class Flight {
         return this.departureTime;
     }
 
-    public ArrayList<Passenger> getCollectionOfPassengers(){
-        return this.collectionOfPassengers;
-    }
+//    public ArrayList<Passenger> getCollectionOfPassengers(ArrayList<Passenger> inputArray){
+//        return this.collectionOfPassengers;
+//    }
 
     public int passengerCount(ArrayList<Passenger> inputArray) {
         return inputArray.size();
+    }
 
+    public int getBaggageTotal(ArrayList<Passenger> passengers) {
+        int totalBags = 0;
+        for (int i = 0 ; i < passengers.size(); i++){
+            totalBags += passengers.get(i).getBags();
+        }
+        return totalBags;
+    }
+
+    public Boolean getPassengerByName(ArrayList<Passenger> passengers, String passengerName) {
+        for (int i = 0 ; i < passengers.size(); i++){
+            if (Objects.equals(passengers.get(i).getName(), passengerName)){
+                return true;
+            }
+        }
+        return false;
     }
 }

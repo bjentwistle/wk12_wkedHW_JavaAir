@@ -45,4 +45,14 @@ public class FlightTest {
     public void hasCollectionOfPassengers(){
         assertEquals(5, flight.passengerCount(passengers));
     }
+
+    @Test
+    public void hasBaggageTotal(){
+        assertEquals(8, flight.getBaggageTotal(passengers));
+    }
+
+    @Test
+    public void hasPassengerNameTed(){
+        assertEquals(true, flight.getPassengerByName(passengers, "Lisa Boyd"));
+    }
 }

@@ -89,4 +89,8 @@ public class Flight {
     public int getCapacity() {
         return capacity;
     }
+
+    public int getAvailableSeats(ArrayList<Passenger> passengers) {
+        return capacity - passengers.size();
+    }
 }

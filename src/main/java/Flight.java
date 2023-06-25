@@ -13,14 +13,15 @@ public class Flight {
 //    a total weight allowance for all baggage / passengers / cargo
 
     private final String flightNum;
+
     private String departureCode;
     private String destinationCode;
     private String departureTime;
-    //private ArrayList<Pilot> crewMembers; //includes pilots and cabin crew
     private ArrayList<Passenger> passengers;
-    private Pilot pilot;
-    private CabinCrew cabinCrew1;
-    private CabinCrew cabinCrew2;
+    private  ArrayList<Pilot> pilots;
+    private ArrayList<CabinCrew> cabinCrewMembers;
+
+    private int capacity;
 
 
     //private int totalWeightOfFlight;
@@ -28,15 +29,15 @@ public class Flight {
     // ie need to know how many of each - bags, passengers. Then multiply by some average weight.
     //Also need cargo weight.
 
-    public Flight(String flightNum, String departureCode, String destinationCode, String departureTime, ArrayList<Passenger> passengers, Pilot pilot, CabinCrew cabinCrew1, CabinCrew cabinCrew2){
+    public Flight(String flightNum, String departureCode, String destinationCode, String departureTime, ArrayList<Passenger> passengers, ArrayList<Pilot> pilots, ArrayList<CabinCrew> cabinCrewMembers, int capacity){
         this.flightNum = flightNum;
         this.departureCode = departureCode;
         this.destinationCode = destinationCode;
         this.departureTime = departureTime;
         this.passengers = passengers;
-//        this.pilot = pilot;
-//        this.cabinCrew1 = cabinCrew1;
-//        this.cabinCrew2 = cabinCrew2;
+        this.pilots = pilots;
+        this.cabinCrewMembers = cabinCrewMembers;
+        this.capacity = capacity;
 
     }
     public String getFlightNum() {
@@ -48,19 +49,12 @@ public class Flight {
     public String getDestinationCode() {
         return this.destinationCode;
     }
-
     public String getDepartureTime() {
         return this.departureTime;
     }
-
-//    public ArrayList<Passenger> getCollectionOfPassengers(ArrayList<Passenger> inputArray){
-//        return this.collectionOfPassengers;
-//    }
-
     public int passengerCount(ArrayList<Passenger> inputArray) {
         return inputArray.size();
     }
-
     public int getBaggageTotal(ArrayList<Passenger> passengers) {
         int totalBags = 0;
         for (int i = 0 ; i < passengers.size(); i++){
@@ -68,7 +62,6 @@ public class Flight {
         }
         return totalBags;
     }
-
     public Boolean getPassengerByName(ArrayList<Passenger> passengers, String passengerName) {
         for (int i = 0 ; i < passengers.size(); i++){
             if (Objects.equals(passengers.get(i).getName(), passengerName)){
@@ -77,9 +70,23 @@ public class Flight {
         }
         return false;
     }
-
     public int addPassenger(ArrayList<Passenger> passengers, Passenger passenger6) {
-        passengers.add(passenger6);
-        return passengerCount( passengers) ;
+        if (capacity > passengers.size()) {
+            passengers.add(passenger6);
+        }
+        return passengerCount(passengers);
+    }
+
+
+    public int getCabinCrewSize() {
+        return cabinCrewMembers.size();
+    }
+
+    public int getPilotPresent() {
+        return pilots.size();
+    }
+
+    public int getCapacity() {
+        return capacity;
     }
 }
